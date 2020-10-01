@@ -35,7 +35,7 @@ a content hub for alchemy students and grads where they can find projects from b
 
 ### Student: XL
 
- - I want to be able to share my end of module project with the alchemy community and   give/receive comments.
+ - I want to be able to share my end of module project with the alchemy community and give/receive comments.
 
    - Feature: upload project info form
 
@@ -47,7 +47,7 @@ a content hub for alchemy students and grads where they can find projects from b
 
   - Feature: can remove posts and/or comments (delete button renders for everything)
 
-  - Acceptance test: post removed from filter page and/or comment removed from    thread.
+  - Acceptance test: post removed from filter page and/or comment removed from thread.
 
 ### Alum: M
 

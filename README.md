@@ -21,4 +21,4 @@ a content hub for alchemy students and grads where they can find projects from b
 <img src="./assets/domain model.png" alt="domain model" />
 
 ## Entity Relationship Model
-<img src="./assets/ed" alt="entity relationship model" />
+<img src="./assets/ed.png" alt="entity relationship model" />

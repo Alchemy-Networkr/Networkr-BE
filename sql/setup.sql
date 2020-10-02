@@ -1,15 +1,20 @@
-DROP TABLE IF EXISTS portfolios_projects, curriculum_projects;
+DROP TABLE IF EXISTS portfolio_projects, curriculum_projects, portfolio_comments, curriculum_comments;
 
-CREATE TABLE portfolios_projects (
+CREATE TABLE portfolio_projects (
   portfolio_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title TEXT NOT NULL,
   primary_language TEXT NOT NULL,
   "date" DATE NOT NULL,
   github_link TEXT NOT NULL,
-  comments TEXT[],
   "description" TEXT NOT NULL,
   collaborators TEXT[],
   "open" BOOLEAN NOT NULL
+);
+
+CREATE TABLE portfolio_comments (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  email TEXT NOT NULL,
+  comment TEXT NOT NULL
 );
 
 CREATE TABLE curriculum_projects (
@@ -18,9 +23,14 @@ CREATE TABLE curriculum_projects (
   github_link TEXT NOT NULL,
   "description" TEXT NOT NULL,
   "group" TEXT[] NOT NULL,
-  comments TEXT[] NOT NULL,
   cohort TEXT NOT NULL,
   tags TEXT[] NOT NULL, 
   deployed_back_end TEXT,
   deployed_front_end TEXT
+);
+
+CREATE TABLE curriculum_comments (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  email TEXT NOT NULL,
+  comment TEXT NOT NULL
 );

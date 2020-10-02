@@ -26,8 +26,13 @@
     "supertest": "^5.0.0"
   },
   "dependencies": {
+    "@alchemycodelab/auth-middleware": "^0.1.2",
+    "chance": "^1.1.7",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "pg": "^8.3.3"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.3.3",
+    "pug": "^3.0.0"
   }
 }

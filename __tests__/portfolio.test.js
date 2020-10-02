@@ -93,7 +93,5 @@ describe('PortfolioComment class', () => {
       .post('/api/v1/portfolioComments')
       .send(addComment)
       .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), portfolioId: expect.any(String) }));
-    
-    
   });
 });

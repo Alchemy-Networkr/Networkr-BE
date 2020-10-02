@@ -15,7 +15,7 @@ CREATE TABLE portfolio_comments (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   email TEXT NOT NULL,
   comment TEXT NOT NULL,
-  portfolio_id BIGINT NOT NULL references portfolio_projects(portfolio_id)
+  portfolio_id BIGINT NOT NULL
 );
 
 CREATE TABLE curriculum_projects (

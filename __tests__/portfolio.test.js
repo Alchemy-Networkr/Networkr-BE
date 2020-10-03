@@ -85,3 +85,13 @@ describe('networkr routes', () => {
       .then(res => expect(res.body).toEqual({ ...updateDetails, portfolioId: firstPortfolio.portfolioId, date: expect.any(String) }));
   });
 });
+
+describe('PortfolioComment class', () => {
+  it('should add a comment via POST', async() => {
+    const addComment = { email: 'ben@ben.com', comment: 'test the comment', portfolioId: 1 };
+    return await request(app)
+      .post('/api/v1/portfolioComments')
+      .send(addComment)
+      .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), portfolioId: expect.any(String) }));
+  });
+});

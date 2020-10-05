@@ -1,14 +1,9 @@
-const fs = require('fs');
-const pool = require('../../utils/pool');
+require('../lib/data/data-helper');
 const request = require('supertest');
-const app = require('../../app');
-const Curriculum_Project = require('../curriculum-model');
+const app = require('../lib/app');
+const CurriculumProject = require('../lib/models/curriculum-model');
 
 describe('curriculum routes', () => {
-  beforeEach(() => {
-    return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
-  });
-
   it('should create a curriculum project using POST', async() => {
     return await request(app)
       .post('/api/v1/curriculum')
@@ -38,7 +33,7 @@ describe('curriculum routes', () => {
   });
 
   it('should get all curriculum projects using GET', async() => {
-    const newProject = await Curriculum_Project.insert({
+    const newProject = await CurriculumProject.insert({
       title: 'Some project',
       githubLink: 'Some link',
       description: 'Some description',
@@ -57,7 +52,7 @@ describe('curriculum routes', () => {
   });
 
   it('finds a project by id using GET', async() => {
-    const newProject = await Curriculum_Project.insert({
+    const newProject = await CurriculumProject.insert({
       title: 'GetById',
       githubLink: 'Some link',
       description: 'Some description',
@@ -76,7 +71,7 @@ describe('curriculum routes', () => {
   });
 
   it('should update an existing curriculum project', async() => {
-    const newProject = await Curriculum_Project.insert({
+    const newProject = await CurriculumProject.insert({
       title: 'GetById',
       githubLink: 'Some link',
       description: 'Some description',
@@ -109,10 +104,10 @@ describe('curriculum routes', () => {
         deployedBackEnd: 'Some link',
         deployedFrontEnd: 'Some link' 
       }));
-  })
+  });
 
   it('should delete a curriculum project', async() => {
-    const newProject = await Curriculum_Project.insert({
+    const newProject = await CurriculumProject.insert({
       title: 'GetById',
       githubLink: 'Some link',
       description: 'Some description',

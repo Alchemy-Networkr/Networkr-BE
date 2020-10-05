@@ -1,9 +1,7 @@
-require('../../data/data-helper');
-const fs = require('fs');
-const pool = require('../../utils/pool');
+require('../lib/data/data-helper');
 const request = require('supertest');
-const app = require('../../app');
-const CurriculumProject = require('../curriculum-model');
+const app = require('../lib/app');
+const CurriculumProject = require('../lib/models/curriculum-model');
 
 describe('curriculum routes', () => {
   it('should create a curriculum project using POST', async() => {

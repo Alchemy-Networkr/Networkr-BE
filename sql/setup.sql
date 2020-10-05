@@ -33,5 +33,6 @@ CREATE TABLE curriculum_projects (
 CREATE TABLE curriculum_comments (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   email TEXT NOT NULL,
-  comment TEXT NOT NULL
+  comment TEXT NOT NULL,
+  curriculum_id BIGINT NOT NULL
 );

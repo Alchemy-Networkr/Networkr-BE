@@ -2,6 +2,7 @@ require('../lib/data/data-helper');
 const request = require('supertest');
 const app = require('../lib/app');
 const CurriculumProject = require('../lib/models/curriculum-model');
+const CurriculumComment = require('../lib/models/curriculum-comment');
 
 describe('curriculum routes', () => {
   it('should create a curriculum project using POST', async() => {
@@ -125,3 +126,36 @@ describe('curriculum routes', () => {
 
   });
 });
+
+describe('CurriculumComment class', () => {
+  it('should add a comment via POST', async() => {
+    const addComment = { email: 'ben@ben.com', comment: 'test the comment', curriculumId: 1 };
+    return await request(app)
+      .post('/api/v1/curriculumComments')
+      .send(addComment)
+      .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), curriculumId: expect.any(String) }));
+  });
+
+  it('should return all comments via GET', async() => {
+    return await request(app)
+      .get('/api/v1/curriculumComments')
+      .then(res => expect(res.body.length).toEqual(50));
+  });
+  // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
+  it('should delete a comment via DELETE', async() => {
+    const firstComment = (await CurriculumComment.findAll())[0];
+    return await request(app)
+      .delete(`/api/v1/curriculumComments/${firstComment.id}`)
+      .then(res => expect(res.body).toEqual(firstComment));
+  });
+
+  it('should update a comment via PATCH', async() => {
+    const firstComment = (await CurriculumComment.findAll())[0];
+    const updatedComment = { comment: 'test the comment update route' };
+    return await request(app)
+      .patch(`/api/v1/curriculumComments/${firstComment.id}`)
+      .send(updatedComment)
+      .then(res => expect(res.body).toEqual({ ...firstComment, comment: updatedComment.comment }));
+  });
+});
+

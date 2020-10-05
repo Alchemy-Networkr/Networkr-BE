@@ -1,6 +1,7 @@
 require('../lib/data/data-helper');
 const request = require('supertest');
 const app = require('../lib/app');
+const { getAgent } = require('../lib/data/data-helper');
 const PortfolioProject = require('../lib/models/portfolio-model');
 
 describe('networkr routes', () => {
@@ -56,7 +57,8 @@ describe('networkr routes', () => {
       collaborators: ['ben, edgar, adrian'], 
       open: true });
 
-    return await request(app)
+   
+    return await getAgent()
       .get('/api/v1/portfolioProjects')
       .then(res => expect(res.body).toEqual(expect.arrayContaining([{ ...addProject, date: expect.stringContaining('2020-10-02') }])));
 

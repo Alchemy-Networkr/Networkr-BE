@@ -59,7 +59,7 @@ describe('networkr routes', () => {
       open: true });
 
    
-    return await getAgent()
+    return await request(app)
       .get('/api/v1/portfolioProjects')
       .then(res => expect(res.body).toEqual(expect.arrayContaining([{ ...addProject, date: expect.stringContaining('2020-10-02') }])));
 

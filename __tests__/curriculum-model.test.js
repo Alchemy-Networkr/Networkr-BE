@@ -141,17 +141,16 @@ describe('curriculum routes', () => {
       .then(res => expect(res.body).toEqual({
         ...newProject, curriculumId: expect.any(String)
       }));
-
   });
 });
 
 describe('curriculumComment class', () => {
   it('should add a comment via POST', async() => {
-    const addComment = { ownerEmail: 'ben@ben.com', comment: 'test the comment', curriculumId: 1 };
+    const addComment = { ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 };
     return await request(app)
       .post('/api/v1/curriculumComments')
       .send(addComment)
-      .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), curriculumId: expect.any(String) }));
+      .then(res => expect(res.body).toEqual({ ...addComment, ownerEmail: res.body.ownerEmail, id: expect.any(String), curriculumId: expect.any(String) }));
   });
 
   it('should return all comments via GET', async() => {
@@ -160,19 +159,20 @@ describe('curriculumComment class', () => {
       .then(res => expect(res.body.length).toEqual(50));
   });
   // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
-  it('should delete a comment via DELETE', async() => {
-    const firstComment = (await CurriculumComment.findAll())[0];
+  it('should delete a comment via DELETE if the owner emails match', async() => {
+    const addedComment = await CurriculumComment.insert({ ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 });
     return await request(app)
-      .delete(`/api/v1/curriculumComments/${firstComment.id}`)
-      .then(res => expect(res.body).toEqual(firstComment));
+      .delete(`/api/v1/CurriculumComments/${addedComment.id}`)
+      .send(addedComment)
+      .then(res => expect(res.body).toEqual(addedComment));
   });
-
-  it('should update a comment via PATCH', async() => {
-    const firstComment = (await CurriculumComment.findAll())[0];
-    const updatedComment = { comment: 'test the comment update route' };
+ 
+  it('should update a comment via PATCH if the owner emails match', async() => {
+    const addedComment = await CurriculumComment.insert({ ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 });
+    const updatedComment = { ...addedComment, comment: 'test the comment update route' };
     return await request(app)
-      .patch(`/api/v1/curriculumComments/${firstComment.id}`)
+      .patch(`/api/v1/CurriculumComments/${addedComment.id}`)
       .send(updatedComment)
-      .then(res => expect(res.body).toEqual({ ...firstComment, comment: updatedComment.comment }));
+      .then(res => expect(res.body).toEqual({ ...addedComment, comment: updatedComment.comment }));
   });
 });

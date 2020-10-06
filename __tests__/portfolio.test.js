@@ -21,7 +21,7 @@ describe('networkr routes', () => {
         open: true }) 
       .then(res => expect(res.body).toEqual({ 
         portfolioId: expect.any(String),
-        ownerEmail: 'ben@ben.com',
+        ownerEmail: res.body.ownerEmail,
         title: 'title', 
         primaryLanguage: 'js', 
         date: expect.stringContaining('2020-10-02'), 
@@ -105,7 +105,7 @@ describe('PortfolioComment class', () => {
     return await request(app)
       .post('/api/v1/portfolioComments')
       .send(addComment)
-      .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), portfolioId: expect.any(String) }));
+      .then(res => expect(res.body).toEqual({ ...addComment, ownerEmail: res.body.ownerEmail, id: expect.any(String), portfolioId: expect.any(String) }));
   });
 
   it('should return all comments via GET', async() => {
@@ -114,19 +114,20 @@ describe('PortfolioComment class', () => {
       .then(res => expect(res.body.length).toEqual(50));
   });
   // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
-  it('should delete a comment via DELETE', async() => {
-    const firstComment = (await PortfolioComment.findAll())[0];
+  it('should delete a comment via DELETE if the owner emails match', async() => {
+    const addedComment = await PortfolioComment.insert({ ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', portfolioId: 1 });
     return await request(app)
-      .delete(`/api/v1/portfolioComments/${firstComment.id}`)
-      .then(res => expect(res.body).toEqual(firstComment));
+      .delete(`/api/v1/portfolioComments/${addedComment.id}`)
+      .send(addedComment)
+      .then(res => expect(res.body).toEqual(addedComment));
   });
  
-  it('should update a comment via PATCH', async() => {
-    const firstComment = (await PortfolioComment.findAll())[0];
-    const updatedComment = { comment: 'test the comment update route' };
+  it('should update a comment via PATCH if the owner emails match', async() => {
+    const addedComment = await PortfolioComment.insert({ ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', portfolioId: 1 });
+    const updatedComment = { ...addedComment, comment: 'test the comment update route' };
     return await request(app)
-      .patch(`/api/v1/portfolioComments/${firstComment.id}`)
+      .patch(`/api/v1/portfolioComments/${addedComment.id}`)
       .send(updatedComment)
-      .then(res => expect(res.body).toEqual({ ...firstComment, comment: updatedComment.comment }));
+      .then(res => expect(res.body).toEqual({ ...addedComment, comment: updatedComment.comment }));
   });
 });

@@ -141,17 +141,16 @@ describe('curriculum routes', () => {
       .then(res => expect(res.body).toEqual({
         ...newProject, curriculumId: expect.any(String)
       }));
-
   });
 });
 
 describe('curriculumComment class', () => {
   it('should add a comment via POST', async() => {
-    const addComment = { ownerEmail: 'ben@ben.com', comment: 'test the comment', curriculumId: 1 };
+    const addComment = { ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 };
     return await request(app)
       .post('/api/v1/curriculumComments')
       .send(addComment)
-      .then(res => expect(res.body).toEqual({ ...addComment, id: expect.any(String), curriculumId: expect.any(String) }));
+      .then(res => expect(res.body).toEqual({ ...addComment, ownerEmail: res.body.ownerEmail, id: expect.any(String), curriculumId: expect.any(String) }));
   });
 
   it('should return all comments via GET', async() => {

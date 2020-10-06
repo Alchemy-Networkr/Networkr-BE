@@ -11,6 +11,7 @@ describe('networkr routes', () => {
     return await request(app)
       .post('/api/v1/portfolioProjects')
       .send({ 
+        ownerEmail: 'ben@ben.com',
         title: 'title', 
         primaryLanguage: 'js', 
         date: '2020-10-02', 
@@ -20,6 +21,7 @@ describe('networkr routes', () => {
         open: true })
       .then(res => expect(res.body).toEqual({ 
         portfolioId: expect.any(String),
+        ownerEmail: 'ben@ben.com',
         title: 'title', 
         primaryLanguage: 'js', 
         date: expect.stringContaining('2020-10-02'), 
@@ -32,6 +34,7 @@ describe('networkr routes', () => {
 
   it('should find portfolio_project by ID via GET', async() => {
     const addProject = await PortfolioProject.insert({ 
+      ownerEmail: 'ben@ben.com',
       title: 'title', 
       primaryLanguage: 'js', 
       date: '2020-10-02', 
@@ -50,6 +53,7 @@ describe('networkr routes', () => {
 
   it('should find all projects via GET', async() => {
     const addProject = await PortfolioProject.insert({ 
+      ownerEmail: 'ben@ben.com',
       title: 'title', 
       primaryLanguage: 'js', 
       date: '2020-10-02', 
@@ -75,6 +79,7 @@ describe('networkr routes', () => {
   it('should update a project by id via PUT', async() => {
     const firstPortfolio = (await PortfolioProject.find())[0];
     const updateDetails = { 
+      ownerEmail: firstPortfolio.ownerEmail,
       title: 'new title', 
       primaryLanguage: 'node.js', 
       date: '2020-10-02', 
@@ -91,7 +96,7 @@ describe('networkr routes', () => {
 
 describe('PortfolioComment class', () => {
   it('should add a comment via POST', async() => {
-    const addComment = { email: 'ben@ben.com', comment: 'test the comment', portfolioId: 1 };
+    const addComment = { ownerEmail: 'ben@ben.com', comment: 'test the comment', portfolioId: 1 };
     return await request(app)
       .post('/api/v1/portfolioComments')
       .send(addComment)

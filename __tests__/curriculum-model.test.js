@@ -127,9 +127,9 @@ describe('curriculum routes', () => {
   });
 });
 
-describe('CurriculumComment class', () => {
+describe('curriculumComment class', () => {
   it('should add a comment via POST', async() => {
-    const addComment = { email: 'ben@ben.com', comment: 'test the comment', curriculumId: 1 };
+    const addComment = { ownerEmail: 'ben@ben.com', comment: 'test the comment', curriculumId: 1 };
     return await request(app)
       .post('/api/v1/curriculumComments')
       .send(addComment)
@@ -158,4 +158,3 @@ describe('CurriculumComment class', () => {
       .then(res => expect(res.body).toEqual({ ...firstComment, comment: updatedComment.comment }));
   });
 });
-

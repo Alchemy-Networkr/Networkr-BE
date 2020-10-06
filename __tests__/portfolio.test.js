@@ -40,6 +40,21 @@ describe('networkr routes', () => {
       .then(res => expect(res.body).toEqual({ ...addProject, comments: expect.any(Array), date: expect.any(String) }));
   });
 
+  it('should find portfolio_project by ID with no comments on that project via GET', async() => {
+    const addProject = await PortfolioProject.insert({ 
+      ownerEmail: 'ben@ben.com',
+      title: 'title', 
+      primaryLanguage: 'js', 
+      date: '2020-10-02', 
+      githubLink: 'google.com', 
+      description: 'this is my project', 
+      collaborators: ['ben, edgar, adrian'], 
+      open: true });
+
+    return await request(app)
+      .get(`/api/v1/portfolioProjects/${Number(addProject.portfolioId)}`)
+      .then(res => expect(res.body).toEqual({ ...addProject, date: expect.any(String) }));
+  });
 
   it('should find all projects via GET', async() => {
     const addProject = await PortfolioProject.insert({ 

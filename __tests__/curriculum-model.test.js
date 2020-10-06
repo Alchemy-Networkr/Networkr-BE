@@ -52,6 +52,24 @@ describe('curriculum routes', () => {
       });
   });
 
+  it('should find curriculum_project by ID with no comments on that project via GET', async() => {
+    const addProject = await CurriculumProject.insert({ 
+      title: 'GetById',
+      githubLink: 'Some link',
+      description: 'Some description',
+      group: ['person1', 'person2'],
+      cohort: 'Some cohort',
+      tags: ['tag1', 'tag2'],
+      deployedBackEnd: 'Some link',
+      deployedFrontEnd: 'Some link' 
+    });
+
+    return await request(app)
+      .get(`/api/v1/curriculum/${Number(addProject.curriculumId)}`)
+      .then(res => expect(res.body).toEqual({ ...addProject, curriculumId: expect.any(String)  }));
+  });
+
+
   it('finds a project by id using GET', async() => {
     const newProject = await CurriculumProject.insert({
       title: 'GetById',

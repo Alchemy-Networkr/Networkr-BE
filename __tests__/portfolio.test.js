@@ -18,7 +18,7 @@ describe('networkr routes', () => {
         githubLink: 'google.com', 
         description: 'this is my project', 
         collaborators: ['ben, edgar, adrian'], 
-        open: true })
+        open: true }) 
       .then(res => expect(res.body).toEqual({ 
         portfolioId: expect.any(String),
         ownerEmail: 'ben@ben.com',
@@ -32,7 +32,15 @@ describe('networkr routes', () => {
       }));
   });
 
-  it('should find portfolio_project by ID via GET', async() => {
+  it('should find portfolio_project by ID with all comments on that project via GET', async() => {
+    const addProject = (await PortfolioProject.find())[0];
+
+    return await request(app)
+      .get(`/api/v1/portfolioProjects/${Number(addProject.portfolioId)}`)
+      .then(res => expect(res.body).toEqual({ ...addProject, comments: expect.any(Array), date: expect.any(String) }));
+  });
+
+  it('should find portfolio_project by ID with no comments on that project via GET', async() => {
     const addProject = await PortfolioProject.insert({ 
       ownerEmail: 'ben@ben.com',
       title: 'title', 
@@ -43,13 +51,10 @@ describe('networkr routes', () => {
       collaborators: ['ben, edgar, adrian'], 
       open: true });
 
-
-
     return await request(app)
-      .get(`/api/v1/portfolioProjects/${addProject.portfolioId}`)
-      .then(res => expect(res.body).toEqual({ ...addProject, date: expect.stringContaining('2020-10-02') }));
+      .get(`/api/v1/portfolioProjects/${Number(addProject.portfolioId)}`)
+      .then(res => expect(res.body).toEqual({ ...addProject, date: expect.any(String) }));
   });
-
 
   it('should find all projects via GET', async() => {
     const addProject = await PortfolioProject.insert({ 
@@ -115,7 +120,7 @@ describe('PortfolioComment class', () => {
       .delete(`/api/v1/portfolioComments/${firstComment.id}`)
       .then(res => expect(res.body).toEqual(firstComment));
   });
-
+ 
   it('should update a comment via PATCH', async() => {
     const firstComment = (await PortfolioComment.findAll())[0];
     const updatedComment = { comment: 'test the comment update route' };

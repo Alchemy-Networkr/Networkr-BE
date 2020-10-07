@@ -52,6 +52,27 @@ describe('curriculum routes', () => {
       });
   });
 
+  it('should find all curriculum_projects by module using tags via GET', async() => {
+    return await request(app)
+      .get('/api/v1/curriculumProjects/module/Foundations-1')
+      .then(res => {
+        expect(res.body).toEqual(expect.arrayContaining([
+          {
+            curriculumId: expect.any(String),
+            title: expect.any(String),
+            githubLink: expect.any(String),
+            description: expect.any(String),
+            group: expect.any(Array),
+            cohort: expect.any(String),
+            tags: ['Foundations-1'],
+            deployedBackEnd: expect.any(String),
+            deployedFrontEnd: expect.any(String) 
+          }
+        ]));
+      });
+      
+  });
+
   it('should find curriculum_project by ID with no comments on that project via GET', async() => {
     const addProject = await CurriculumProject.insert({ 
       title: 'GetById',

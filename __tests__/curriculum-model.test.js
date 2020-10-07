@@ -146,6 +146,7 @@ describe('curriculum routes', () => {
 
 describe('curriculumComment class', () => {
   it('should add a comment via POST', async() => {
+
     const addComment = { ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 };
     return await request(app)
       .post('/api/v1/curriculumComments')
@@ -159,6 +160,7 @@ describe('curriculumComment class', () => {
       .then(res => expect(res.body.length).toEqual(50));
   });
   // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
+
   it('should delete a comment via DELETE if the owner emails match', async() => {
     const addedComment = await CurriculumComment.insert({ ownerEmail: 'instruction@alchemycodelab.io', comment: 'test the comment', curriculumId: 1 });
     return await request(app)
@@ -174,5 +176,6 @@ describe('curriculumComment class', () => {
       .patch(`/api/v1/CurriculumComments/${addedComment.id}`)
       .send(updatedComment)
       .then(res => expect(res.body).toEqual({ ...addedComment, comment: updatedComment.comment }));
+
   });
 });

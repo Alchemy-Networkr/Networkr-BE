@@ -21,7 +21,9 @@ describe('networkr routes', () => {
         open: true }) 
       .then(res => expect(res.body).toEqual({ 
         portfolioId: expect.any(String),
+
         ownerEmail: res.body.ownerEmail,
+
         title: 'title', 
         primaryLanguage: 'js', 
         date: expect.stringContaining('2020-10-02'), 
@@ -105,7 +107,9 @@ describe('PortfolioComment class', () => {
     return await request(app)
       .post('/api/v1/portfolioComments')
       .send(addComment)
+
       .then(res => expect(res.body).toEqual({ ...addComment, ownerEmail: res.body.ownerEmail, id: expect.any(String), portfolioId: expect.any(String) }));
+
   });
 
   it('should return all comments via GET', async() => {
@@ -129,5 +133,6 @@ describe('PortfolioComment class', () => {
       .patch(`/api/v1/portfolioComments/${addedComment.id}`)
       .send(updatedComment)
       .then(res => expect(res.body).toEqual({ ...addedComment, comment: updatedComment.comment }));
+
   });
 });

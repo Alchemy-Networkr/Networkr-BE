@@ -5,9 +5,8 @@ block contents
   each project in allPortfolioProjects
       ul= project.title
         li= project.description
-        li= project.group
-        li= project.cohort
-        li= project.tags
-        li= project.deployedBackEnd
-        li= project.deployedFrontEnd
+        li= project.primaryLanguage 
+        li= project.date
         li= project.githubLink
+        li= project.collaborators
+        li= project.open

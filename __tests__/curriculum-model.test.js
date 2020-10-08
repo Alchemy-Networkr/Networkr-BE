@@ -7,7 +7,7 @@ const CurriculumComment = require('../lib/models/curriculum-comment');
 describe('curriculum routes', () => {
   it('should create a curriculum project using POST', async() => {
     return await request(app)
-      .post('/api/v1/curriculum')
+      .post('/api/v1/curriculumProjects')
       .send({
         title: 'Some project',
         githubLink: 'Some link',
@@ -46,10 +46,31 @@ describe('curriculum routes', () => {
     });
  
     return await request(app)
-      .get('/api/v1/curriculum')
+      .get('/api/v1/curriculumProjects')
       .then(res => {
         expect(res.body).toEqual(expect.arrayContaining([{ ...newProject, curriculumId: expect.any(String) }]));
       });
+  });
+
+  it('should find all curriculum_projects by module using tags via GET', async() => {
+    return await request(app)
+      .get('/api/v1/curriculumProjects/module/Foundations-1')
+      .then(res => {
+        expect(res.body).toEqual(expect.arrayContaining([
+          {
+            curriculumId: expect.any(String),
+            title: expect.any(String),
+            githubLink: expect.any(String),
+            description: expect.any(String),
+            group: expect.any(Array),
+            cohort: expect.any(String),
+            tags: ['Foundations-1'],
+            deployedBackEnd: expect.any(String),
+            deployedFrontEnd: expect.any(String) 
+          }
+        ]));
+      });
+      
   });
 
   it('should find curriculum_project by ID with no comments on that project via GET', async() => {
@@ -65,7 +86,7 @@ describe('curriculum routes', () => {
     });
 
     return await request(app)
-      .get(`/api/v1/curriculum/${Number(addProject.curriculumId)}`)
+      .get(`/api/v1/curriculumProjects/${Number(addProject.curriculumId)}`)
       .then(res => expect(res.body).toEqual({ ...addProject, curriculumId: expect.any(String)  }));
   });
 
@@ -83,7 +104,7 @@ describe('curriculum routes', () => {
     }); 
 
     return await request(app)
-      .get(`/api/v1/curriculum/${newProject.curriculumId}`)
+      .get(`/api/v1/curriculumProjects/${newProject.curriculumId}`)
       .then(res => {
         expect(res.body).toEqual({ ...newProject, curriculumId: expect.any(String) });
       });
@@ -101,7 +122,7 @@ describe('curriculum routes', () => {
       deployedFrontEnd: 'Some link' 
     });
     return await request(app)
-      .put(`/api/v1/curriculum/${newProject.curriculumId}`)
+      .put(`/api/v1/curriculumProjects/${newProject.curriculumId}`)
       .send({
         title: 'GetById',
         githubLink: 'Some other link',
@@ -137,7 +158,7 @@ describe('curriculum routes', () => {
       deployedFrontEnd: 'Some link' 
     });
     return await request(app)
-      .delete(`/api/v1/curriculum/${newProject.curriculumId}`)
+      .delete(`/api/v1/curriculumProjects/${newProject.curriculumId}`)
       .then(res => expect(res.body).toEqual({
         ...newProject, curriculumId: expect.any(String)
       }));

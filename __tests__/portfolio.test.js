@@ -51,14 +51,14 @@ describe('networkr routes', () => {
         date: expect.any(String),
         githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
         description: 'a repo',
-        collaborators: [
+        collaborators: expect.arrayContaining([
           'bwapes',
           'katiepdx',
           'asimental100',
           'EdgarPDX',
           'warrioryoko',
           'Nate-Kruck'
-        ],
+        ]),
         open: true
       }));
   });

@@ -22,3 +22,9 @@ const careerTrack2Projects = document.getElementById('careertrack2');
 careerTrack2Projects.addEventListener('click', () => {
   window.location = '/api/v1/Career-Track-2';
 });
+
+const allPortfolioProjects = document.getElementById('allPP');
+
+allPortfolioProjects.addEventListener('click', () => {
+  window.location = '/api/v1/All-Portfolio-Projects';
+});

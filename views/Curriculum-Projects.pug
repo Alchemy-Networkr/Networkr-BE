@@ -1,8 +1,8 @@
 extends _layout.pug
 block contents
-  h1= foundations1Projects[0].tags
+  h1 All Curriculum Projects
 
-  each project in foundations1Projects
+  each project in allCurriculumProjects
       ul= project.title
         li= project.description
         li= project.group

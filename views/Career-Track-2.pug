@@ -1,0 +1,13 @@
+extends _layout.pug
+block contents
+  h1= careerTrack2Projects[0].tags
+
+  each project in careerTrack2Projects
+      ul= project.title
+        li= project.description
+        li= project.group
+        li= project.cohort
+        li= project.tags
+        li= project.deployedBackEnd
+        li= project.deployedFrontEnd
+        li= project.githubLink

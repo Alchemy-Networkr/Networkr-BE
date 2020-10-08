@@ -21,19 +21,19 @@
     "@types/jest": "^26.0.14",
     "@types/pg": "^7.14.5",
     "eslint": "^7.10.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.2",
     "nodemon": "^2.0.4",
     "supertest": "^5.0.0"
   },
   "dependencies": {
-    "@alchemycodelab/auth-middleware": "^0.1.2",
+    "@alchemycodelab/auth-middleware": "^0.1.3",
     "chance": "^1.1.7",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "path": "^0.12.7",
-    "pg": "^8.3.3",
+    "pg": "^8.4.0",
     "pug": "^3.0.0"
   }
 }

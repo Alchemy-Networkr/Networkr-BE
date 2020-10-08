@@ -1,18 +1,22 @@
 const logoutButton = document.getElementById('logout');
 console.log(logoutButton);
 logoutButton.addEventListener('click', () => {
-  console.log('Ben says...');
 });
 
-const allCP = document.getElementById('allCP');
-console.log(allCP);
-allCP.addEventListener('click', () => {
-  console.log('Ben says...');
+const home = document.getElementById('home');
+console.log(home);
+home.addEventListener('click', () => {
+  window.location = '/api/v1/home';
 });
 
-const allPP = document.getElementById('allPP');
-console.log(allPP);
-allPP.addEventListener('click', () => {
-  console.log('Ben says...');
+const allPortfolioProjects = document.getElementById('allPP');
+
+allPortfolioProjects.addEventListener('click', () => {
+  window.location = '/api/v1/All-Portfolio-Projects';
 });
 
+const allCurriculumProjecs = document.getElementById('allCP');
+
+allCurriculumProjecs.addEventListener('click', () => {
+  window.location = '/api/v1/All-Curriculum-Projects';
+});

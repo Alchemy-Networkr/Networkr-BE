@@ -1,0 +1,12 @@
+extends _layout.pug
+block contents
+  h1= cssProjects[0].tags
+
+  each project in cssProjects
+      ul= project.title
+        li= project.description
+        li= project.primaryLanguage 
+        li= project.date
+        li= project.githubLink
+        li= project.collaborators
+        li= project.open

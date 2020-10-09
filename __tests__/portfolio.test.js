@@ -1,7 +1,6 @@
 require('../lib/data/data-helper');
 const request = require('supertest');
 const app = require('../lib/app');
-const { getAgent } = require('../lib/data/data-helper');
 const PortfolioProject = require('../lib/models/portfolio-model');
 const PortfolioComment = require('../lib/models/portfolio-comment');
 

@@ -22,3 +22,5 @@ const careerTrack2Projects = document.getElementById('careertrack2');
 careerTrack2Projects.addEventListener('click', () => {
   window.location = '/api/v1/Career-Track-2';
 });
+
+const javascript = document.getElementById('javascript');

@@ -34,10 +34,14 @@ describe('networkr routes', () => {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   it('should insert a portfolio projects with a given github repo link and description via POST', async() => {
 =======
   it.skip('should insert a portfolio projects with a given github repo link and description via POST', async() => {
 >>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
+=======
+  it.skip('should insert a portfolio projects with a given github repo link and description via POST', async() => {
+>>>>>>> 7ea860e260a212af28c00818b928699e57ffba60
     const githubLink = 'https://github.com/Alchemy-Networkr/Networkr-BE';
     const description = 'a repo';
     return await request(app)
@@ -55,10 +59,14 @@ describe('networkr routes', () => {
         githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
         description: 'a repo',
 <<<<<<< HEAD
+<<<<<<< HEAD
         collaborators: [
 =======
         collaborators: expect.arrayContaining([
 >>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
+=======
+        collaborators: expect.arrayContaining([
+>>>>>>> 7ea860e260a212af28c00818b928699e57ffba60
           'bwapes',
           'katiepdx',
           'asimental100',
@@ -66,10 +74,14 @@ describe('networkr routes', () => {
           'warrioryoko',
           'Nate-Kruck'
 <<<<<<< HEAD
+<<<<<<< HEAD
         ],
 =======
         ]),
 >>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
+=======
+        ]),
+>>>>>>> 7ea860e260a212af28c00818b928699e57ffba60
         open: true
       }));
   });

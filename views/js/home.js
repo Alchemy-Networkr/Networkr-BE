@@ -13,6 +13,7 @@ foundations1Projects.addEventListener('click', () => {
   window.location = '/api/v1/Foundations-1';
 });
 
+
 foundations2Projects.addEventListener('click', () => {
   window.location = '/api/v1/Foundations-2';
 });

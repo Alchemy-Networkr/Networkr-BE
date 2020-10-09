@@ -4,13 +4,15 @@ html
     style
       include css/styles.css
   header
-    h1 Alchemy Networkr
-    p= message
-    button#home Home
+    p#userName= message
+    h1#mainH1 Alchemy Networkr
+    button#logout Logout
+  div(class='home-models')
+    button#home(class="fas fa-home") 
     button#allCP Curriculum Projects
     button#allPP Portfolio Projects
-    button#logout Logout
   body
     block contents
+    script(src="https://kit.fontawesome.com/f865ba8569.js")
     script
       include js/nav.js

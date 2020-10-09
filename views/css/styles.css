@@ -3,13 +3,46 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.705);
 }
+
 h1 {
-  color: brown
+  color: brown;
+  text-align: center;
 }
 ul {
-  background-color: rgb(226, 202, 210);
-  border: 3px dashed black;
+  background-color: rgba(226, 202, 210, 0.541);
+  border: 3px black;
   font-size: 2rem;
   width: 60vw;
+  list-style: none;
+  padding-inline-start: 20px;
+  box-shadow: black 2px 2px 2px;
+  border-radius: 5px;
+}
+
+#logout{
+  position: absolute;
+  right: 1%;
+  top: 2%;
+}
+
+#userName {
+  position: absolute;
+  left: 1%;
+  top: 0;
+}
+
+#mainH1 {
+  color: darkgrey;
+  font-weight: bolder;
+  font-size: 3.5rem;
+  text-shadow: 0 0 3px black,
+  0 0 5px red;
+}
+
+button {
+  margin: 2px;
+  box-shadow: rgba(169, 169, 169, 0.644) 1px 2px 1px;
+  border-radius: 2px;
 }

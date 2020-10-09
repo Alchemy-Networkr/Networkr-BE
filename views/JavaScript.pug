@@ -3,6 +3,7 @@ block contents
   h1= javascriptProjects[0].tags
 
   each project in javascriptProjects
+
       ul(value=project.portfolioId).portfolioButtons= project.title
         li= project.description
         li= project.primaryLanguage 

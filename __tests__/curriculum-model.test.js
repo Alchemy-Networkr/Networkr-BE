@@ -55,6 +55,7 @@ describe('curriculum routes', () => {
         ]),
         cohort: 'Put your cohort here!',
         tags: ['JavaScript', 'Pug', 'CSS'],
+
         curriculumId: expect.any(String),
         githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
         deployedBackEnd: 'Put a link to your back end here!',

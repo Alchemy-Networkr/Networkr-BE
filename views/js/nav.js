@@ -1,11 +1,11 @@
 const logoutButton = document.getElementById('logout');
-console.log(logoutButton);
+
 logoutButton.addEventListener('click', () => {
   window.location = '/api/v1/Logout';
 });
 
 const home = document.getElementById('home');
-console.log(home);
+
 home.addEventListener('click', () => {
   window.location = '/api/v1/home';
 });

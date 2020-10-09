@@ -40,3 +40,4 @@ cssButton.addEventListener('click', () => {
 pythonButton.addEventListener('click', () => {
   window.location = '/api/v1/Python';
 });
+

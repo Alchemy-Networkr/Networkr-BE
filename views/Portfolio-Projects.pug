@@ -3,6 +3,7 @@ block contents
   h1 All Portfolio Projects
 
   each project in allPortfolioProjects
+
       ul(value=project.portfolioId).portfolioButtons= project.title
         li= project.description
         li= project.primaryLanguage 

@@ -1,3 +1,15 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 h1 {
   color: brown
+}
+ul {
+  background-color: rgb(226, 202, 210);
+  border: 3px dashed black;
+  font-size: 2rem;
+  width: 60vw;
 }

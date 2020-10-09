@@ -26,10 +26,39 @@ describe('networkr routes', () => {
 
         title: 'title', 
         primaryLanguage: 'js', 
-        date: expect.stringContaining('2020-10-02'), 
+        date: expect.any(String), 
         githubLink: 'google.com', 
         description: 'this is my project', 
         collaborators: ['ben, edgar, adrian'], 
+        open: true
+      }));
+  });
+
+  it.skip('should insert a portfolio projects with a given github repo link and description via POST', async() => {
+    const githubLink = 'https://github.com/Alchemy-Networkr/Networkr-BE';
+    const description = 'a repo';
+    return await request(app)
+      .post('/api/v1/portfolioProjects/githubLink')
+      .send({
+        url: githubLink,
+        description
+      })
+      .then(res => expect(res.body).toEqual({
+        portfolioId: expect.any(String),
+        ownerEmail: 'asimental100@gmail.com',
+        title: 'Networkr-BE',
+        primaryLanguage: 'JavaScript',
+        date: expect.any(String),
+        githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
+        description: 'a repo',
+        collaborators: expect.arrayContaining([
+          'bwapes',
+          'katiepdx',
+          'asimental100',
+          'EdgarPDX',
+          'warrioryoko',
+          'Nate-Kruck'
+        ]),
         open: true
       }));
   });

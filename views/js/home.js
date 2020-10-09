@@ -24,3 +24,7 @@ careerTrack2Projects.addEventListener('click', () => {
 });
 
 const javascript = document.getElementById('javascript');
+
+javascript.addEventListener('click', () => {
+  window.location = '/api/v1/JavaScript';
+});

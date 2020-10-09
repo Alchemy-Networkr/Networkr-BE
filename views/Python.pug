@@ -1,9 +1,8 @@
 extends _layout.pug
 block contents
-  h1= javascriptProjects[0].tags
+  h1= pythonProjects[0].tags
 
-  each project in javascriptProjects
-
+  each project in pythonProjects
       ul(value=project.portfolioId).portfolioButtons= project.title
         li= project.description
         li= project.primaryLanguage 

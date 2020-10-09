@@ -1,0 +1,23 @@
+extends _layout.pug
+block contents
+  h1= detailedCurriculum.title
+
+  ul= detailedCurriculum.title
+    li= detailedCurriculum.description
+    each tag in detailedCurriculum.tags
+      li= tag
+    li= detailedCurriculum.cohort
+    li= detailedCurriculum.githubLink
+    h5 Group Members
+    each person in detailedCurriculum.group
+      li= person
+    h5 Deployed Front End Site
+    li= detailedCurriculum.deployedFrontEnd
+    h5 Deployed Back End Site
+    li= detailedCurriculum.deployedBackEnd
+
+  h1 Project comments!
+  each comment in detailedCurriculum.comments
+    ul
+      li= comment.owner_email
+      li= comment.comment      

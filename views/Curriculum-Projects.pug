@@ -3,7 +3,8 @@ block contents
   h1 All Curriculum Projects
 
   each project in allCurriculumProjects
-      ul= project.title
+
+      ul(value=project.curriculumId).curriculumButtons= project.title
         li= project.description
         li= project.group
         li= project.cohort
@@ -11,3 +12,6 @@ block contents
         li= project.deployedBackEnd
         li= project.deployedFrontEnd
         li= project.githubLink
+  script
+    include js/getCurriculumDetails.js  
+

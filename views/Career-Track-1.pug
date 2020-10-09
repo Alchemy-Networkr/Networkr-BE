@@ -3,7 +3,9 @@ block contents
   h1= careerTrack1Projects[0].tags
 
   each project in careerTrack1Projects
-      ul= project.title
+
+      ul(value=project.curriculumId).curriculumButtons= project.title
+
         li= project.description
         li= project.group
         li= project.cohort
@@ -11,3 +13,6 @@ block contents
         li= project.deployedBackEnd
         li= project.deployedFrontEnd
         li= project.githubLink
+  script
+    include js/getCurriculumDetails.js  
+

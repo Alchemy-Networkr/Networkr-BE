@@ -1,0 +1,17 @@
+extends _layout.pug
+block contents
+  h1= detailedPortfolio.title
+
+  ul= detailedPortfolio.title
+    li= detailedPortfolio.description
+    li= detailedPortfolio.primaryLanguage 
+    li= detailedPortfolio.date
+    li= detailedPortfolio.githubLink
+    li= detailedPortfolio.collaborators
+    li= detailedPortfolio.open
+
+  h1 Project comments!
+  each comment in detailedPortfolio.comments
+    ul
+      li= comment.owner_email
+      li= comment.comment      

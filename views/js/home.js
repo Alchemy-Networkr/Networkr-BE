@@ -13,7 +13,6 @@ foundations1Projects.addEventListener('click', () => {
   window.location = '/api/v1/Foundations-1';
 });
 
-const foundations2Projects = document.getElementById('foundations2');
 
 foundations2Projects.addEventListener('click', () => {
   window.location = '/api/v1/Foundations-2';

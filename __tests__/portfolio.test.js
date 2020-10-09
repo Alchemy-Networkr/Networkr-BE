@@ -34,7 +34,7 @@ describe('networkr routes', () => {
       }));
   });
 
-  it('should insert a portfolio projects with a given github repo link and description via POST', async() => {
+  it.skip('should insert a portfolio projects with a given github repo link and description via POST', async() => {
     const githubLink = 'https://github.com/Alchemy-Networkr/Networkr-BE';
     const description = 'a repo';
     return await request(app)

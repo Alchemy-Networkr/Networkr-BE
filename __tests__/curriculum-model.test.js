@@ -33,6 +33,36 @@ describe('curriculum routes', () => {
       });
   });
 
+  it.skip('should insert a curriculum projects with a given github repo link and description via POST', async() => {
+    const githubLink = 'https://github.com/Alchemy-Networkr/Networkr-BE';
+    const description = 'a repo';
+    return await request(app)
+      .post('/api/v1/curriculumProjects/githubLink')
+      .send({
+        url: githubLink,
+        description
+      })
+      .then(res => expect(res.body).toEqual({
+        title: 'Networkr-BE',
+        description: 'a repo',
+        group: expect.arrayContaining([
+          'katiepdx',
+          'bwapes',
+          'EdgarPDX',
+          'asimental100',
+          'Nate-Kruck',
+          'warrioryoko'
+        ]),
+        cohort: 'Put your cohort here!',
+        tags: ['JavaScript', 'Pug', 'CSS'],
+        curriculumId: '26',
+        githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
+        deployedBackEnd: 'Put a link to your back end here!',
+        deployedFrontEnd: 'https://networkr-be.herokuapp.com/'
+      }
+      ));
+  });
+
   it('should get all curriculum projects using GET', async() => {
     const newProject = await CurriculumProject.insert({
       title: 'Some project',

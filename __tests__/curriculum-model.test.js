@@ -208,7 +208,7 @@ describe('curriculumComment class', () => {
   it('should return all comments via GET', async() => {
     return await request(app)
       .get('/api/v1/curriculumComments')
-      .then(res => expect(res.body.length).toEqual(75));
+      .then(res => expect(res.body.length).toEqual(250));
   });
   // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
 

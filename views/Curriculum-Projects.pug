@@ -1,8 +1,8 @@
 extends _layout.pug
 block contents
-  h1= foundations1Projects[0].tags
+  h1 All Curriculum Projects
 
-  each project in foundations1Projects
+  each project in allCurriculumProjects
 
       ul(value=project.curriculumId).curriculumButtons= project.title
         li= project.description
@@ -13,5 +13,5 @@ block contents
         li= project.deployedFrontEnd
         li= project.githubLink
   script
-    include js/getCurriculumDetails.js 
+    include js/getCurriculumDetails.js  
 

@@ -1,7 +1,6 @@
 require('../lib/data/data-helper');
 const request = require('supertest');
 const app = require('../lib/app');
-const { getAgent } = require('../lib/data/data-helper');
 const PortfolioProject = require('../lib/models/portfolio-model');
 const PortfolioComment = require('../lib/models/portfolio-comment');
 
@@ -34,7 +33,11 @@ describe('networkr routes', () => {
       }));
   });
 
+<<<<<<< HEAD
   it('should insert a portfolio projects with a given github repo link and description via POST', async() => {
+=======
+  it.skip('should insert a portfolio projects with a given github repo link and description via POST', async() => {
+>>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
     const githubLink = 'https://github.com/Alchemy-Networkr/Networkr-BE';
     const description = 'a repo';
     return await request(app)
@@ -51,14 +54,22 @@ describe('networkr routes', () => {
         date: expect.any(String),
         githubLink: 'https://github.com/Alchemy-Networkr/Networkr-BE',
         description: 'a repo',
+<<<<<<< HEAD
         collaborators: [
+=======
+        collaborators: expect.arrayContaining([
+>>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
           'bwapes',
           'katiepdx',
           'asimental100',
           'EdgarPDX',
           'warrioryoko',
           'Nate-Kruck'
+<<<<<<< HEAD
         ],
+=======
+        ]),
+>>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
         open: true
       }));
   });
@@ -144,7 +155,7 @@ describe('PortfolioComment class', () => {
   it('should return all comments via GET', async() => {
     return await request(app)
       .get('/api/v1/portfolioComments')
-      .then(res => expect(res.body.length).toEqual(50));
+      .then(res => expect(res.body.length).toEqual(75));
   });
   // add routes for auth -> one for a good request, one for a bad request(user tries to delete a comment they didnt make)
   it('should delete a comment via DELETE if the owner emails match', async() => {

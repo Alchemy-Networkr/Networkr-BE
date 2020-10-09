@@ -1,0 +1,14 @@
+extends _layout.pug
+block contents
+  h1= pythonProjects[0].tags
+
+  each project in pythonProjects
+      ul(value=project.portfolioId).portfolioButtons= project.title
+        li= project.description
+        li= project.primaryLanguage 
+        li= project.date
+        li= project.githubLink
+        li= project.collaborators
+        li= project.open
+  script
+    include js/getPortfolioDetails.js  

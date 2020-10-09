@@ -18,4 +18,8 @@ jobs:
       env:
         CI: true
         DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
+<<<<<<< HEAD
         MY_GITHUB_TOKEN: 6a0b5680b020fc1ac269c1605848bf22f66d9fcf
+=======
+        MY_GITHUB_TOKEN: GITHUB
+>>>>>>> 6dae3ed4b4b23f0a7aff1724851eaed97f60e070
